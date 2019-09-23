@@ -1,1 +1,11 @@
 
+[
+  {
+    "ParameterKey": "LambdaFunctionsBucketName",
+    "ParameterValue": "/InfrastructureParameters/LambdaFunctionsBucketName"
+  },
+  {
+    "ParameterKey": "CloudFormationBucketName",
+    "ParameterValue": "/InfrastructureParameters/CloudFormationBucketName"
+  },
+]
