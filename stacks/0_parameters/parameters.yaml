@@ -1,1 +1,38 @@
 
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  This stack holds and exports various parameters which control
+  the deployment of other resources associated with the JupyterHub
+  stack. It should be created manually before any other stacks
+  and allows the rest of the templates to match between test and 
+  production accounts.
+  
+#################### Parameters #####################
+#####################################################
+
+Parameters:
+
+  LambdaFunctionsBucketName:
+    Description: >-
+      Bucket name for Lambda configuration
+    Type: String
+    
+  CloudFormationBucketName:
+    Description: >-
+      Bucket name for CloudFormation templates.
+    Type: String
+
+###################### Outputs ######################
+##################################################### 
+    
+Outputs:
+      
+  LambdaFunctionsBucketName:
+    Value: !Ref LambdaFunctionsBucketName
+    Export:
+      Name: DataScienceExports-LambdaFunctionsBucketName
+    
+  CloudFormationBucketName:
+    Value: !Ref CloudFormationBucketName
+    Export:
+      Name: DataScienceExports-CloudFormationBucketName
