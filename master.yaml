@@ -1,1 +1,66 @@
 
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  This stack holds and exports various parameters which control
+  the deployment of other resources associated with the JupyterHub
+  stack. It should be created manually before any other stacks
+  and allows the rest of the templates to match between test and 
+  production accounts.
+  
+#################### Parameters #####################
+#####################################################
+
+Parameters:
+
+  LambdaS3Bucket:
+    Description: >-
+      Lambda Function bucket name.
+    Type: 'AWS::SSM::Parameter::Value<String>'
+
+  SNSSubscriptions	:
+    Description: >-
+      SNS Subscription Name
+    Type: 'AWS::SSM::Parameter::Value<String>'
+    
+  SNSTopicName:
+    Description: >-
+      SNSTopicName.
+    Type: 'AWS::SSM::Parameter::Value<String>'
+    
+  CloudFormationBucketName:
+    Description: >-
+      Bucket name for CloudFormation templates.
+    Type: 'AWS::SSM::Parameter::Value<String>'
+    
+##################### Resources #####################
+#####################################################     
+    
+Resources:
+
+  Parameters:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Join
+        - ''
+        - - 'https://s3.amazonaws.com/'
+          - !Ref CloudFormationBucketName
+          - '/cloudformationstack/stacks/0_parameters/parameters.yaml'
+      Parameters:
+        LambdaS3Bucket: !Ref LambdaS3Bucket
+        SNSSubscriptions: !Ref SNSSubscriptions
+        SNSTopicName: !Ref SNSTopicName
+
+
+  RootAPIMonitor:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Join
+        - ''
+        - - 'https://s3.amazonaws.com/'
+          - !Ref CloudFormationBucketName
+          - '/cloudformationstack/stacks/1_monitoring/rootapi.yaml'
+    DependsOn:
+      - Parameters
+          
+
+  
