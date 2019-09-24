@@ -12,7 +12,8 @@ phases:
         - echo "Install sam cli"
         - pip install aws-sam-cli
         - echo "Setup github auth"
-        - git config --global url."https://${TOKEN}:@github.com/".insteadOf "https://github.com/"
+        - git config --global username "anaf3y"
+        - git config --global password "M0nk3yM@n123456"
     build:
       commands:
         - echo "Build"
