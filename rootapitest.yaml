@@ -21,9 +21,11 @@ Parameters:
   SNSSubscriptions:
     Type: 'AWS::SSM::Parameter::Value<String>'
     Description: RootAPI Alerts will be popped up in an email to aws-dev@cma.gov.uk
+    Default: 'LambdaS3Bucket'
   SNSTopicName:
     Description: RootAPI Monitoring Topic
     Type: 'AWS::SSM::Parameter::Value<String>'
+    Default: 'SNSTopicName'
   LambdaTimeout:
     Type: Number
     Default: '60'
@@ -31,9 +33,11 @@ Parameters:
   LambdaS3Bucket:
     Description: Lambda function is stored in dev.lambdafunctions.cma.gov.uk S3 bucket
     Type: 'AWS::SSM::Parameter::Value<String>'
+    Default: 'LambdaS3Bucket'
   LambdaS3Key:
     Description: Name of the S3 key of the Lambda function - RootActivityLambda.zip
     Type: 'AWS::SSM::Parameter::Value<String>'
+    Default: 'LambdaS3Key'
 Resources:
   RootActivitySNSTopic:
     Type: AWS::SNS::Topic
