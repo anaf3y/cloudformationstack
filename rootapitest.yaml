@@ -21,7 +21,7 @@ Parameters:
   SNSSubscriptions:
     Type: 'AWS::SSM::Parameter::Value<String>'
     Description: RootAPI Alerts will be popped up in an email to aws-dev@cma.gov.uk
-    Default: "LambdaS3Bucket"
+    Default: "SNSSubscriptions"
   SNSTopicName:
     Description: RootAPI Monitoring Topic
     Type: 'AWS::SSM::Parameter::Value<String>'
