@@ -3,7 +3,7 @@ env:
   variables:
     NAME: helloworld
   parameter-store:
-    BUCKET: "/InfrastructureParameters/LambdaFunctionsBucketName"
+    BUCKET: "LambdaS3Bucket"
 phases:
     install:
       runtime-versions:
